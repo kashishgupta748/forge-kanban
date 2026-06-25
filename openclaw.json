@@ -1,0 +1,33 @@
+{
+  "channels": {
+    "slack": {
+      "enabled": true,
+      "mode": "socket",
+      "appToken": {
+        "source": "env",
+        "provider": "default",
+        "id": "SLACK_APP_TOKEN"
+      },
+      "botToken": {
+        "source": "env",
+        "provider": "default",
+        "id": "SLACK_BOT_TOKEN"
+      }
+    }
+  },
+  "models": {
+    "default": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:32b",
+      "baseUrl": "http://localhost:11434/v1"
+    },
+    "fallback": {
+      "provider": "groq",
+      "model": "mixtral-8x7b-32768",
+      "baseUrl": "https://api.groq.com/openai/v1"
+    }
+  },
+  "workspace": {
+    "path": "./"
+  }
+}

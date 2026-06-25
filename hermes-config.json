@@ -1,0 +1,40 @@
+{
+  "agent": {
+    "name": "Hermes",
+    "role": "Orchestrator & Architect"
+  },
+  "model": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "apiKey": {
+      "source": "env",
+      "id": "GEMINI_API_KEY"
+    }
+  },
+  "fallback_model": {
+    "provider": "groq",
+    "model": "llama3-70b-8192",
+    "apiKey": {
+      "source": "env",
+      "id": "GROQ_API_KEY"
+    }
+  },
+  "slack": {
+    "bot_token": {
+      "source": "env",
+      "id": "SLACK_BOT_TOKEN"
+    },
+    "channel_sprint_main": "#sprint-main",
+    "channel_agent_coder": "#agent-coder",
+    "channel_agent_log": "#agent-log"
+  },
+  "cron": {
+    "enabled": true,
+    "interval_minutes": 10,
+    "skill": "status-report"
+  },
+  "memory": {
+    "persistent": true,
+    "path": "./.hermes/memory.json"
+  }
+}
