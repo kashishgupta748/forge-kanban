@@ -1,6 +1,5 @@
 import React from 'react';
 import { useBoards } from '../hooks/useBoards';
-import { useCards } from '../hooks/useCards';
 import { LayoutDashboard, CheckCircle2, Clock, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Avatar from '../components/ui/Avatar';
