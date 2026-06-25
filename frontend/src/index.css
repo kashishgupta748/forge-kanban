@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ──────────────────────────────────────────── */
+:root {
+  --brand-primary: #6366f1;
+  --brand-primary-dark: #4f46e5;
+  --brand-accent: #818cf8;
+  --surface-base: #0f172a;
+  --surface-card: #1e293b;
+  --surface-elevated: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-subtle: #334155;
+  --scrollbar-thumb: #334155;
+  --scrollbar-track: #1e293b;
+}
+
+/* ─── Base Styles ────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background-color: var(--surface-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Custom Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+/* ─── Kanban Board Scroll ────────────────────────────────────── */
+.kanban-board {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.kanban-column-scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+/* ─── Transitions ────────────────────────────────────────────── */
+.transition-all {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Custom Animations ──────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in   { animation: fadeIn 0.2s ease-out; }
+.animate-slide-up  { animation: slideUp 0.25s ease-out; }
+.animate-slide-down{ animation: slideDown 0.25s ease-out; }
+.animate-scale-in  { animation: scaleIn 0.2s ease-out; }
+
+/* ─── Skeleton / Loading Shimmer ─────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #1e293b 25%,
+    #334155 50%,
+    #1e293b 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+/* ─── Card Drag ──────────────────────────────────────────────── */
+.card-dragging {
+  opacity: 0.5;
+  transform: rotate(2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-drag-overlay {
+  transform: rotate(2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ─── Drop Zone ──────────────────────────────────────────────── */
+.drop-zone-active {
+  background-color: rgba(99, 102, 241, 0.08);
+  border: 2px dashed rgba(99, 102, 241, 0.4);
+  border-radius: 8px;
+}
+
+/* ─── Glass Effect ───────────────────────────────────────────── */
+.glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+/* ─── Focus Styles ───────────────────────────────────────────── */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+}
+
+/* ─── Tag Colors ─────────────────────────────────────────────── */
+.tag-indigo  { background-color: rgba(99, 102, 241, 0.2); color: #a5b4fc; border-color: rgba(99,102,241,0.3); }
+.tag-rose    { background-color: rgba(244, 63, 94, 0.2);  color: #fda4af; border-color: rgba(244,63,94,0.3);  }
+.tag-amber   { background-color: rgba(245, 158, 11, 0.2); color: #fcd34d; border-color: rgba(245,158,11,0.3); }
+.tag-emerald { background-color: rgba(16, 185, 129, 0.2); color: #6ee7b7; border-color: rgba(16,185,129,0.3); }
+.tag-sky     { background-color: rgba(14, 165, 233, 0.2); color: #7dd3fc; border-color: rgba(14,165,233,0.3);  }
+.tag-violet  { background-color: rgba(139, 92, 246, 0.2); color: #c4b5fd; border-color: rgba(139,92,246,0.3); }
+.tag-pink    { background-color: rgba(236, 72, 153, 0.2); color: #f9a8d4; border-color: rgba(236,72,153,0.3); }
+.tag-teal    { background-color: rgba(20, 184, 166, 0.2); color: #5eead4; border-color: rgba(20,184,166,0.3);  }
